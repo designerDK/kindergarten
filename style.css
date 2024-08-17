@@ -13,6 +13,7 @@
     --color-8-pink: rgb(235, 59, 156);
 }
 
+/* 공통 */
 * {
     font-family: pretendard;
     box-sizing: border-box;
@@ -31,6 +32,25 @@ h1{
     margin: 0px;
     text-align: center;
 }
+.contents-section{
+    border: 2px solid red;
+}
+
+/* 푸터 */
+footer{
+    border: 2px solid green;
+    display: flex;
+    justify-content: space-between;
+}
+.footer-container{
+    border: 2px solid blue;
+    display: flex;
+}
+.footer-info{
+    border: 2px solid red;
+}
+
+/* 서치 */
 .search-section{
     border: 2px solid green;
     display: flex;
@@ -43,30 +63,104 @@ h1{
 }
 .discription{
     border: 2px solid blue;
+    text-align: center;
 }
 .search-btn{
     border: 2px solid green;
 }
-.contents-section{
-    border: 2px solid red;
-}
+
+/* 구별 버튼 */
 .states-card-container{
     border: 2px solid green;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
     justify-content: center;
+    row-gap: 60px;
+    column-gap: 36px;
 }
 .states-card{
     border: 2px solid blue;
+    text-align: center;
 }
-footer{
+
+/* 리스트 */
+.kinder-list-container{
+    border: 5px solid navy;
+}
+.kinder-list-card{
+    border: 2px solid orange;
+    display: flex;
+    flex-direction: column;
+}
+.kinder-list-contentsGrp{
+    border: 2px solid green;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.kinder-list-contents{
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+}
+.kinder-list-info{
+    border: 2px solid rebeccapurple;
+    display: flex;
+}
+.kinder-list-phone{
+    border: 2px solid orange;
+}
+.kinder-list-address{
+    border: 2px solid blue;
+}
+.icon{
+    border: 2px solid orange;
+}
+.divider{
+    border: 2px solid greenyellow;
+}
+/* 타이틀 */
+.kinder-title{
+    border: 2px solid palevioletred;
+    display: flex;
+}
+.kinder-tag{
+    border: 2px solid green;
+}
+.kinder-name{
+    border: 2px solid firebrick;
+}
+/* 디테일 */
+.kinder-detail-container{
+    border: 2px solid palevioletred;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+.kinder-detail-basicGrp{
     border: 2px solid green;
     display: flex;
     justify-content: space-between;
 }
-.info-container{
+.kinder-detail-basic{
     border: 2px solid blue;
+}
+.kinder-detail-basicInfo{
+    border: 2px solid orange;
+}
+.kinder-detail-icon{
+    border: 2px solid red;
+    width: 40px;
+    height: 40px;
+}
+/* 키벨류 */
+.key-value{
+    border: 2px solid green;
     display: flex;
 }
-.info{
-    border: 2px solid red;
+.key{
+    border: 2px solid firebrick;
+}
+.value{
+    border: 2px solid greenyellow;
 }
