@@ -1,0 +1,72 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+/* 컬러변수 */
+:root{
+    --color-0-gray: rgb(201, 201, 201);
+    --color-1-navy: rgb(0, 19, 128);
+    --color-2-green: green;
+    --color-3-orange: rgb(238, 123, 30);
+    --color-4-sky: rgb(0, 204, 255);
+    --color-5-purple: rgb(86, 44, 201);
+    --color-6-brown: rgb(133, 51, 26);
+    --color-7-grass: rgb(115, 128, 0);
+    --color-8-pink: rgb(235, 59, 156);
+}
+
+* {
+    font-family: pretendard;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+}
+header{
+    border: 2px solid blue;
+}
+.home-btn{
+    border: 2px solid red;
+}
+h1{
+    margin: 0px;
+    text-align: center;
+}
+.search-section{
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+}
+.input-container{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+}
+.discription{
+    border: 2px solid blue;
+}
+.search-btn{
+    border: 2px solid green;
+}
+.contents-section{
+    border: 2px solid red;
+}
+.states-card-container{
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+}
+.states-card{
+    border: 2px solid blue;
+}
+footer{
+    border: 2px solid green;
+    display: flex;
+    justify-content: space-between;
+}
+.info-container{
+    border: 2px solid blue;
+    display: flex;
+}
+.info{
+    border: 2px solid red;
+}
