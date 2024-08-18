@@ -70,7 +70,7 @@ footer{
 }
 
 /* 구별 버튼 */
-.states-card-container{
+.states-btn-container{
     border: 2px solid green;
     display: grid;
     grid-template-columns: repeat(5, 100px);
@@ -78,40 +78,37 @@ footer{
     row-gap: 60px;
     column-gap: 36px;
 }
-.states-card{
+.states-btn{
     border: 2px solid blue;
     text-align: center;
 }
 
 /* 리스트 */
-.kinder-list-container{
+.list-container{
     border: 5px solid navy;
 }
-.kinder-list-card{
+.list-card{
     border: 2px solid orange;
     display: flex;
     flex-direction: column;
 }
-.kinder-list-contentsGrp{
+.list-contentsGrp{
     border: 2px solid green;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.kinder-list-contents{
+.list-contents{
     border: 2px solid blue;
     display: flex;
     flex-direction: column;
 }
-.kinder-list-info{
+.list-infoGrp{
     border: 2px solid rebeccapurple;
     display: flex;
 }
-.kinder-list-phone{
+.list-info{
     border: 2px solid orange;
-}
-.kinder-list-address{
-    border: 2px solid blue;
 }
 .icon{
     border: 2px solid orange;
@@ -131,24 +128,24 @@ footer{
     border: 2px solid firebrick;
 }
 /* 디테일 */
-.kinder-detail-container{
+.detail-container{
     border: 2px solid palevioletred;
     display: flex;
     flex-direction: column;
     gap:10px;
 }
-.kinder-detail-basicGrp{
+.detail-basicGrp{
     border: 2px solid green;
     display: flex;
     justify-content: space-between;
 }
-.kinder-detail-basic{
+.detail-basic{
     border: 2px solid blue;
 }
-.kinder-detail-basicInfo{
+.detail-basicInfo{
     border: 2px solid orange;
 }
-.kinder-detail-icon{
+.detail-icon{
     border: 2px solid red;
     width: 40px;
     height: 40px;
@@ -163,4 +160,62 @@ footer{
 }
 .value{
     border: 2px solid greenyellow;
+}
+/* 페이지네이션 */
+.pagenation{
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.page-btn{
+    border: 2px solid blue;
+}
+.page-num{
+    border: 2px solid red;
+}
+/* 데이터 */
+.data-container{
+    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.data-card{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.data-contents{
+    border: 2px solid greenyellow;
+    display: flex;
+    flex-direction: column;
+}
+.data-title{
+    border: 2px solid green;
+    text-align: center;
+}
+.data-keyValue-barGraph{
+    border: 2px solid fuchsia;
+    display: flex;
+    gap: 10px;
+}
+.barGraph-container{
+    border: 2px solid orange;
+}
+.barGraph{
+    border: 2px solid blue;
+}
+.data-totalContainer{
+    border: 2px solid red;
+    display: flex;
+    justify-content: end;
+}
+.data-totalKey{
+    border: 2px solid green;
+}
+.data-totalValue{
+    border: 2px solid olive;
 }
