@@ -27,6 +27,7 @@ function searchList(){
     for(let i = 0; i < data.DATA.length; i++){
       if(data.DATA[i].addr.includes(clickedGuName)){
         console.log(data.DATA[i].addr)
+        console.log(data.DATA[i].establish)
         // 리스트페이지로 이동
         // 리스트페이지의 항목에 넣어주기
       }else{}
