@@ -1,6 +1,14 @@
 let guName = 
 ['강서구', '강남구', '강동구', '광진구', '송파구']
 
+const searchInput = document.querySelector(".input");
+
+//백버튼시 검색 초기화
+window.addEventListener("pageshow", function () {
+  if (searchInput) {
+    searchInput.value = "";
+  }
+});
 // 구 버튼을 눌렀을 때 그 텍스트콘텐츠 정보를 clickedGuName이라는 전역변수에 저장하고 다른 페이지에서도 사용하기 위한 코드
 let clickedGuName;
 localStorage.setItem('clickedGuName', clickedGuName);
@@ -22,10 +30,18 @@ guName.forEach((item) => {
     .insertAdjacentHTML("beforeend", guBTN);
 });
 
-//검색창 인풋값으로 검색해주는 버튼
+// 검색창 인풋값으로 검색해주는 버튼
 document.querySelector(".search-btn")
-    .addEventListener("click", function(){
-        searchedKeyword = document.querySelector(".input").value;
-        localStorage.setItem('searchedKeyword', searchedKeyword);
-        location.href = 'list.html';
-    })
+  .addEventListener("click", function () {
+    // 인풋 값 가져오기
+    searchedKeyword = searchInput.value.trim(); // 공백 제거
+
+    // 인풋이 비어있지 않은 경우에만 검색 수행
+    if (searchedKeyword !== "") {  // 부정연산자
+      localStorage.setItem('searchedKeyword', searchedKeyword);
+      location.href = 'list.html';
+    } else {
+      // 인풋이 비어있을 때 처리 (선택 사항: 경고 메시지 등을 표시 가능)
+      console.log("검색어를 입력해주세요.");
+    }
+  });

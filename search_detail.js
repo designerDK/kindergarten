@@ -3,44 +3,42 @@
 
 // list.js에서 저장된 전역변수 clickedKinderName을 localStorage로 저장했다가 가져오기
 document.addEventListener("DOMContentLoaded", function () {
-    let clickedGuName = localStorage.getItem('clickedGuName');
+    let clickedIndex = localStorage.getItem('clickedIndex');
     let clickedKinderName = localStorage.getItem('clickedKinderName');
 
-    if (clickedGuName, clickedKinderName) {
-        searchDetail(clickedGuName, clickedKinderName);
+    if (clickedIndex, clickedKinderName) {
+        searchDetail(clickedIndex, clickedKinderName);
     } else {
         console.error("No Name found in localStorage.");
     }
 });
-
-function searchDetail(clickedGuName, clickedKinderName) {
+ 
+  function searchDetail(clickedIndex, clickedKinderName){
     fetch("./json/kinderGeneral.json")
-        .then((response) => response.json())
-        .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
 
-            // filter: data.DATA 속 kindername이 특정 명칭(clickedKinderName)과 일치하는지 여부를 판단하고 일치하는 것을 배열로 반환
-            // .trim().toLowerCase()를 쓰면 띄어쓰기나 대소문자로 인한 불일치를 해소
-            let kinderInfos = data.DATA.filter((item) =>
-                item.kindername.trim().toLowerCase() === clickedKinderName.trim().toLowerCase()
-            );
+    // filter: data.DATA 속 kindername이 특정 명칭(clickedKinderName)과 일치하는지 여부를 판단하고 일치하는 것을 배열로 반환
+    // .trim().toLowerCase()를 쓰면 띄어쓰기나 대소문자로 인한 불일치를 해소
+        let kinderInfos = data.DATA.filter((item) =>
+            item.kindername.trim().toLowerCase() === clickedKinderName.trim().toLowerCase()
+        );
+        console.log(clickedKinderName)
+        console.log(clickedIndex)
 
-            // kinderInfos에 들어있는 배열 정보 중 주소가 clickedGuName을 포함하는 배열만 반환
-            let kinderInfoPick = kinderInfos.filter((item) =>
-                item.addr.includes(clickedGuName));
-
-            const detailTitle = `
+        const detailTitle = `
             <h1>${clickedKinderName} 정보</h1>
         `
 
-            const detailBasic = `
+        const detailBasic = `
         <div class="detail-basicGrp">
             <div class="detail-basic">
                 <div class="kinder-title">
                     <div class="kinder-tag">
-                        ${kinderInfoPick[0].establish}
+                        ${kinderInfos[clickedIndex].establish}
                     </div>
                     <div class="kinder-name">
-                        ${kinderInfoPick[0].kindername}
+                        ${kinderInfos[clickedIndex].kindername}
                     </div>
                 </div>
                 <div class="detail-basicInfo">
@@ -49,7 +47,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             전화번호
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].telno}
+                            ${kinderInfos[clickedIndex].telno}
                         </div>
                     </div>
                     <div class="key-value">
@@ -57,7 +55,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             운영시간
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].opertime}
+                            ${kinderInfos[clickedIndex].opertime}
                         </div>
                     </div>
                 </div>
@@ -70,7 +68,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     설립일
                 </div>
                 <div class="value">
-                    ${kinderInfoPick[0].edate}
+                    ${kinderInfos[clickedIndex].edate}
                 </div>
             </div>
             <div class="key-value">
@@ -78,7 +76,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     개원일
                 </div>
                 <div class="value">
-                    ${kinderInfoPick[0].odate}
+                    ${kinderInfos[clickedIndex].odate}
                 </div>
             </div>
             <div class="key-value">
@@ -86,7 +84,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     대표자명
                 </div>
                 <div class="value">
-                    ${kinderInfoPick[0].rppnname}
+                    ${kinderInfos[clickedIndex].rppnname}
                 </div>
             </div>
             <div class="key-value">
@@ -94,7 +92,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     원장명
                 </div>
                 <div class="value">
-                    ${kinderInfoPick[0].ldgrname}
+                    ${kinderInfos[clickedIndex].ldgrname}
                 </div>
             </div>
             <div class="key-value">
@@ -102,7 +100,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     교육청명
                 </div>
                 <div class="value">
-                    ${kinderInfoPick[0].officeedu}
+                    ${kinderInfos[clickedIndex].officeedu}
                 </div>
             </div>
             <div class="key-value">
@@ -110,7 +108,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     교육지원청명
                 </div>
                 <div class="value">
-                    ${kinderInfoPick[0].subofficeedu}
+                    ${kinderInfos[clickedIndex].subofficeedu}
                 </div>
             </div>
             <div class="key-value">
@@ -118,13 +116,13 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     홈페이지
                 </div>
                 <div class="value">
-                    ${kinderInfoPick[0].hpaddr}
+                    ${kinderInfos[clickedIndex].hpaddr}
                 </div>
             </div>
         </div>
         `
 
-            const classNumData = `
+        const classNumData = `
         <div class="data-card">
             <div class="data-contents">
                 <div class="data-title">
@@ -136,7 +134,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             만 3세 반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].clcnt3}
+                            ${kinderInfos[clickedIndex].clcnt3}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -149,7 +147,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             만 4세 반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].clcnt4}
+                            ${kinderInfos[clickedIndex].clcnt4}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -162,7 +160,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             만 5세 반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].clcnt5}
+                            ${kinderInfos[clickedIndex].clcnt5}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -175,7 +173,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             혼합반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].mixclcnt}
+                            ${kinderInfos[clickedIndex].mixclcnt}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -188,7 +186,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             특수학급
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].shclcnt}
+                            ${kinderInfos[clickedIndex].shclcnt}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -202,15 +200,15 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     총 학급
                 </div>
                 <div class="data-totalValue">
-                    ${Number(kinderInfoPick[0].clcnt3) + Number(kinderInfoPick[0].clcnt4)
-                + Number(kinderInfoPick[0].clcnt5) + Number(kinderInfoPick[0].mixclcnt)
-                + Number(kinderInfoPick[0].shclcnt)
-                }개
+                    ${Number(kinderInfos[clickedIndex].clcnt3) + Number(kinderInfos[clickedIndex].clcnt4)
+                    + Number(kinderInfos[clickedIndex].clcnt5) + Number(kinderInfos[clickedIndex].mixclcnt)
+                    + Number(kinderInfos[clickedIndex].shclcnt)
+                    }개
                 </div>
             </div>
         </div>
         `
-            const kidNumData = `
+        const kidNumData = `
         <div class="data-card">
             <div class="data-contents">
                 <div class="data-title">
@@ -222,7 +220,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             만 3세 반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].ppcnt3}
+                            ${kinderInfos[clickedIndex].ppcnt3}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -235,7 +233,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             만 4세 반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].ppcnt4}
+                            ${kinderInfos[clickedIndex].ppcnt4}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -248,7 +246,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             만 5세 반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].ppcnt5}
+                            ${kinderInfos[clickedIndex].ppcnt5}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -261,7 +259,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             혼합반
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].mixppcnt}
+                            ${kinderInfos[clickedIndex].mixppcnt}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -274,7 +272,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
                             특수학급
                         </div>
                         <div class="value">
-                            ${kinderInfoPick[0].shppcnt}
+                            ${kinderInfos[clickedIndex].shppcnt}
                         </div>
                     </div>
                     <div class="barGraph-container">
@@ -288,24 +286,24 @@ function searchDetail(clickedGuName, clickedKinderName) {
                     총 유아수
                 </div>
                 <div class="data-totalValue">
-                    ${Number(kinderInfoPick[0].ppcnt3) + Number(kinderInfoPick[0].ppcnt4)
-                + Number(kinderInfoPick[0].ppcnt5) + Number(kinderInfoPick[0].mixppcnt)
-                + Number(kinderInfoPick[0].shppcnt)
-                }명
+                    ${Number(kinderInfos[clickedIndex].ppcnt3) + Number(kinderInfos[clickedIndex].ppcnt4)
+                    + Number(kinderInfos[clickedIndex].ppcnt5) + Number(kinderInfos[clickedIndex].mixppcnt)
+                    + Number(kinderInfos[clickedIndex].shppcnt)
+                    }명
                 </div>
             </div>
         </div>
         `
-            document.querySelector(".detail-title")
-                .insertAdjacentHTML("beforeend", detailTitle);
-            document.querySelector(".detail-container")
-                .insertAdjacentHTML("beforeend", detailBasic);
+        document.querySelector(".detail-title")
+            .insertAdjacentHTML("beforeend", detailTitle);
+        document.querySelector(".detail-container")
+            .insertAdjacentHTML("beforeend", detailBasic);
 
-            document.querySelector(".data-container")
-                .insertAdjacentHTML("beforeend", classNumData);
+        document.querySelector(".data-container")
+            .insertAdjacentHTML("beforeend", classNumData);
 
-            document.querySelector(".data-container")
-                .insertAdjacentHTML("beforeend", kidNumData);
-        });
+        document.querySelector(".data-container")
+            .insertAdjacentHTML("beforeend", kidNumData);
+    });
 };
 
