@@ -70,6 +70,7 @@ function searchList(clickedGuName) {
           document.querySelector(".list-container")
             .insertAdjacentHTML("beforeend", listCard);
 
+          //리스트 목록을 클릭 했을 때 clickedKinderName과 clickedkinderCode를 저장하고 디테일페이지로 이동
           document.getElementById(`list${[i]}`)
             .addEventListener("click", function () {
               clickedKinderName = document.getElementById(`list-name${[i]}`).textContent;
@@ -77,7 +78,7 @@ function searchList(clickedGuName) {
 
               clickedkinderCode = data.DATA[i].kindercode;
               localStorage.setItem('clickedkinderCode', clickedkinderCode);
-              
+
               location.href = 'detail.html';
             });
         }
@@ -89,7 +90,7 @@ function searchList(clickedGuName) {
 //검색창에서 검색 했을 때 그 키워드를 포함하는 유치원명을 모두 전역변수 배열로 저장
 let searchedArray = [];
 
-//서치 버튼 클릭 시 작동되는 기능
+//서치 인풋 내용 입력후 버튼 클릭 시 작동되는 기능
 function directSearchList(searchedKeyword) {
   fetch("./json/kinderGeneral.json")
     .then((response) => response.json())
@@ -144,7 +145,7 @@ function directSearchList(searchedKeyword) {
           document.querySelector(".list-container")
             .insertAdjacentHTML("beforeend", listCard);
 
-
+          //리스트 목록을 클릭 했을 때 clickedKinderName과 clickedkinderCode를 저장하고 디테일페이지로 이동
           document.getElementById(`list${[i]}`)
             .addEventListener("click", function () {
               clickedKinderName = document.getElementById(`list-name${[i]}`).textContent;
@@ -152,16 +153,26 @@ function directSearchList(searchedKeyword) {
 
               clickedkinderCode = directKinderInfos[i].kindercode;
               localStorage.setItem('clickedkinderCode', clickedkinderCode);
-              
+
               location.href = 'detail.html';
             });
         }
       }
+      // 일치하는 검색결과가 없을 때
       if (searchedArray.length == 0) {
-        console.log("검색결과 없음");
+
+        let listEmpty = `
+          <div class="empty-contents">
+            <div class="empty-msg">
+                <div class="empty-img">이미지</div>
+                <div class="empty-text">일치하는 유치원명이 없습니다.</div>
+            </div>
+            <a class="empty-back-btn" href="index.html">돌아가기</a>
+          </div>
+        `
+
+        document.querySelector(".list-container")
+            .insertAdjacentHTML("beforeend", listEmpty);
       }
     })
 }
-
-//서치된 것 없을 때 빈페이지 디자인, 돌아가기 버튼
-//검색엔터

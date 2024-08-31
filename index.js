@@ -9,6 +9,12 @@ window.addEventListener("pageshow", function () {
     searchInput.value = "";
   }
 });
+//검색버튼을 키보드 엔터 눌렀을 때도 동작하게
+searchInput.addEventListener("keyup", function(event){
+  if(event.keyCode === 13){
+    document.querySelector(".search-btn").click();
+  }
+});
 // 구 버튼을 눌렀을 때 그 텍스트콘텐츠 정보를 clickedGuName이라는 전역변수에 저장하고 다른 페이지에서도 사용하기 위한 코드
 let clickedGuName;
 localStorage.setItem('clickedGuName', clickedGuName);

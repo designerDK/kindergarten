@@ -1,7 +1,4 @@
-// 필터 내용 중 어레이가 2개 이상인 경우 눌렀던 목록 중 주소에서 구 버튼 텍스트와 일치하는 것만 하나 찾아내야함
-// 따라서 index.js에서 저장된 전역변수 clickedGuName를 localStorage로 저장했다가 가져오기
-
-// list.js에서 저장된 전역변수 clickedKinderName을 localStorage로 저장했다가 가져오기
+// list.js에서 저장된 전역변수들을 localStorage로 저장했다가 가져오기
 document.addEventListener("DOMContentLoaded", function () {
     let clickedkinderCode = localStorage.getItem('clickedkinderCode');
     let clickedKinderName = localStorage.getItem('clickedKinderName');
@@ -25,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         console.log(clickedKinderName)
         console.log(clickedkinderCode)
-
+// kinderInfos는 복수의 데이터가 들어올 수 있으므로 clickedkinderCode를 통해 클릭한 리스트의 데이터와 일치하는 데이터만 찾아냄
         let kinderInfoPick = kinderInfos.filter((item) =>
             item.kindercode === clickedkinderCode
         )
