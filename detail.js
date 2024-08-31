@@ -3,36 +3,38 @@
 
 // list.js에서 저장된 전역변수 clickedKinderName을 localStorage로 저장했다가 가져오기
 document.addEventListener("DOMContentLoaded", function () {
-    let clickedGuName = localStorage.getItem('clickedGuName');
+    let clickedkinderCode = localStorage.getItem('clickedkinderCode');
     let clickedKinderName = localStorage.getItem('clickedKinderName');
 
-    if (clickedGuName, clickedKinderName) {
-        searchDetail(clickedGuName, clickedKinderName);
+    if (clickedkinderCode, clickedKinderName) {
+        searchDetail(clickedkinderCode, clickedKinderName);
     } else {
         console.error("No Name found in localStorage.");
     }
 });
-
-function searchDetail(clickedGuName, clickedKinderName) {
+ 
+  function searchDetail(clickedkinderCode, clickedKinderName){
     fetch("./json/kinderGeneral.json")
-        .then((response) => response.json())
-        .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
 
-            // filter: data.DATA 속 kindername이 특정 명칭(clickedKinderName)과 일치하는지 여부를 판단하고 일치하는 것을 배열로 반환
-            // .trim().toLowerCase()를 쓰면 띄어쓰기나 대소문자로 인한 불일치를 해소
-            let kinderInfos = data.DATA.filter((item) =>
-                item.kindername.trim().toLowerCase() === clickedKinderName.trim().toLowerCase()
-            );
+    // filter: data.DATA 속 kindername이 특정 명칭(clickedKinderName)과 일치하는지 여부를 판단하고 일치하는 것을 배열로 반환
+    // .trim().toLowerCase()를 쓰면 띄어쓰기나 대소문자로 인한 불일치를 해소
+        let kinderInfos = data.DATA.filter((item) =>
+            item.kindername.trim().toLowerCase() === clickedKinderName.trim().toLowerCase()
+        );
+        console.log(clickedKinderName)
+        console.log(clickedkinderCode)
 
-            // kinderInfos에 들어있는 배열 정보 중 주소가 clickedGuName을 포함하는 배열만 반환
-            let kinderInfoPick = kinderInfos.filter((item) =>
-                item.addr.includes(clickedGuName));
+        let kinderInfoPick = kinderInfos.filter((item) =>
+            item.kindercode === clickedkinderCode
+        )
 
-            const detailTitle = `
+        const detailTitle = `
             <h1>${clickedKinderName} 정보</h1>
         `
 
-            const detailBasic = `
+        const detailBasic = `
         <div class="detail-basicGrp">
             <div class="detail-basic">
                 <div class="kinder-title">
@@ -124,7 +126,7 @@ function searchDetail(clickedGuName, clickedKinderName) {
         </div>
         `
 
-            const classNumData = `
+        const classNumData = `
         <div class="data-card">
             <div class="data-contents">
                 <div class="data-title">
@@ -203,14 +205,14 @@ function searchDetail(clickedGuName, clickedKinderName) {
                 </div>
                 <div class="data-totalValue">
                     ${Number(kinderInfoPick[0].clcnt3) + Number(kinderInfoPick[0].clcnt4)
-                + Number(kinderInfoPick[0].clcnt5) + Number(kinderInfoPick[0].mixclcnt)
-                + Number(kinderInfoPick[0].shclcnt)
-                }개
+                    + Number(kinderInfoPick[0].clcnt5) + Number(kinderInfoPick[0].mixclcnt)
+                    + Number(kinderInfoPick[0].shclcnt)
+                    }개
                 </div>
             </div>
         </div>
         `
-            const kidNumData = `
+        const kidNumData = `
         <div class="data-card">
             <div class="data-contents">
                 <div class="data-title">
@@ -289,23 +291,23 @@ function searchDetail(clickedGuName, clickedKinderName) {
                 </div>
                 <div class="data-totalValue">
                     ${Number(kinderInfoPick[0].ppcnt3) + Number(kinderInfoPick[0].ppcnt4)
-                + Number(kinderInfoPick[0].ppcnt5) + Number(kinderInfoPick[0].mixppcnt)
-                + Number(kinderInfoPick[0].shppcnt)
-                }명
+                    + Number(kinderInfoPick[0].ppcnt5) + Number(kinderInfoPick[0].mixppcnt)
+                    + Number(kinderInfoPick[0].shppcnt)
+                    }명
                 </div>
             </div>
         </div>
         `
-            document.querySelector(".detail-title")
-                .insertAdjacentHTML("beforeend", detailTitle);
-            document.querySelector(".detail-container")
-                .insertAdjacentHTML("beforeend", detailBasic);
+        document.querySelector(".detail-title")
+            .insertAdjacentHTML("beforeend", detailTitle);
+        document.querySelector(".detail-container")
+            .insertAdjacentHTML("beforeend", detailBasic);
 
-            document.querySelector(".data-container")
-                .insertAdjacentHTML("beforeend", classNumData);
+        document.querySelector(".data-container")
+            .insertAdjacentHTML("beforeend", classNumData);
 
-            document.querySelector(".data-container")
-                .insertAdjacentHTML("beforeend", kidNumData);
-        });
+        document.querySelector(".data-container")
+            .insertAdjacentHTML("beforeend", kidNumData);
+    });
 };
 

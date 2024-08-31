@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 let clickedKinderName;
 localStorage.setItem('clickedKinderName', clickedKinderName);
 
-let clickedIndex;
-localStorage.setItem('clickedIndex', clickedIndex);
+let clickedkinderCode;
+localStorage.setItem('clickedkinderCode', clickedkinderCode);
 
 // 구 버튼 눌렀을 때 clickedGuName을 통해 api를 조회해서 목록을 생성해주는 기능
 function searchList(clickedGuName) {
@@ -74,8 +74,12 @@ function searchList(clickedGuName) {
             .addEventListener("click", function () {
               clickedKinderName = document.getElementById(`list-name${[i]}`).textContent;
               localStorage.setItem('clickedKinderName', clickedKinderName);
+
+              clickedkinderCode = data.DATA[i].kindercode;
+              localStorage.setItem('clickedkinderCode', clickedkinderCode);
+              
               location.href = 'detail.html';
-            })
+            });
         }
       }
     });
@@ -140,15 +144,16 @@ function directSearchList(searchedKeyword) {
           document.querySelector(".list-container")
             .insertAdjacentHTML("beforeend", listCard);
 
+
           document.getElementById(`list${[i]}`)
             .addEventListener("click", function () {
               clickedKinderName = document.getElementById(`list-name${[i]}`).textContent;
               localStorage.setItem('clickedKinderName', clickedKinderName);
+
+              clickedkinderCode = directKinderInfos[i].kindercode;
+              localStorage.setItem('clickedkinderCode', clickedkinderCode);
               
-              clickedIndex = i;
-              localStorage.setItem('clickedIndex', clickedIndex);
-              
-              location.href = 'search_detail.html';
+              location.href = 'detail.html';
             });
         }
       }
@@ -158,6 +163,5 @@ function directSearchList(searchedKeyword) {
     })
 }
 
-//백버튼시 인풋 비도록
 //서치된 것 없을 때 빈페이지 디자인, 돌아가기 버튼
 //검색엔터
