@@ -130,7 +130,7 @@ function directSearchList(searchedKeyword) {
                     ${directKinderInfos[i].telno}
                     </div>
                     <div class="list-info" id="list-addr${[i]}">
-                      ${directKinderInfos[i].addr}
+    q                  ${directKinderInfos[i].addr}
                     </div>
                   </div>
                 </div>

@@ -200,21 +200,13 @@ footer{
     border: 2px solid greenyellow;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 .data-title{
     border: 2px solid green;
     text-align: center;
-}
-.data-keyValue-barGraph{
-    border: 2px solid fuchsia;
-    display: flex;
-    gap: 10px;
-}
-.barGraph-container{
-    border: 2px solid orange;
-}
-.barGraph{
-    border: 2px solid blue;
 }
 .data-totalContainer{
     border: 2px solid red;
