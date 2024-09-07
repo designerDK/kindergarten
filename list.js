@@ -1,178 +1,178 @@
-document.addEventListener("DOMContentLoaded", function () {
-  let clickedGuName = localStorage.getItem('clickedGuName');
-  let searchedKeyword = localStorage.getItem('searchedKeyword');
+let currentPage = 1; // 현재 페이지 번호
+const itemsPerPage = 10; // 페이지당 표시할 항목 수
+let currentList = []; // 현재 목록을 저장할 배열
+const maxPageButtons = 10; // 페이지네이션에서 보일 최대 페이지 번호 버튼 수
+let startPage = 1; // 페이지 번호 버튼의 시작 페이지
+let endPage = maxPageButtons; // 페이지 번호 버튼의 끝 페이지
 
-  // 검색 키워드가 있을 경우 우선 처리
+document.addEventListener("DOMContentLoaded", function () {
+  let clickedGuName = localStorage.getItem("clickedGuName");
+  let searchedKeyword = localStorage.getItem("searchedKeyword");
+
   if (searchedKeyword) {
     directSearchList(searchedKeyword);
-    listTitle = `
-            <h1>검색된 유치원 정보</h1>
-          `;
+    let listTitle = `<h1>검색된 유치원 정보</h1>`;
     document.querySelector(".list-title").insertAdjacentHTML("beforeend", listTitle);
-  }
-  // 검색 키워드가 없을 때 clickedGuName 처리
-  else if (clickedGuName) {
+  } else if (clickedGuName) {
     searchList(clickedGuName);
-    listTitle = `
-            <h1>${clickedGuName} 유치원 정보</h1>
-          `;
+    let listTitle = `<h1>${clickedGuName} 유치원 정보</h1>`;
     document.querySelector(".list-title").insertAdjacentHTML("beforeend", listTitle);
-  }
-  else {
+  } else {
     console.log("No guName or searchedKeyword!");
   }
 });
 
-let clickedKinderName;
-localStorage.setItem('clickedKinderName', clickedKinderName);
-
-let clickedkinderCode;
-localStorage.setItem('clickedkinderCode', clickedkinderCode);
-
-// 구 버튼 눌렀을 때 clickedGuName을 통해 api를 조회해서 목록을 생성해주는 기능
 function searchList(clickedGuName) {
   fetch("./json/kinderGeneral.json")
     .then((response) => response.json())
     .then((data) => {
-
-      for (let i = 0; i < data.DATA.length; i++) {
-        if (data.DATA[i].addr.includes(clickedGuName)) {
-
-          let listCard = `
-            <div class="list-card" id="list${[i]}">
-              <div class="list-contentsGrp">
-                <div class="list-contents">
-                  <div class="kinder-title">
-                    <div class="kinder-tag" id="list-establish${[i]}">
-                      ${data.DATA[i].establish}
-                    </div>
-                    <div class="kinder-name" id="list-name${[i]}">
-                      ${data.DATA[i].kindername}
-                    </div>
-                  </div>
-                  <div class="list-infoGrp">
-                    <div class="list-info" id="list-num${[i]}">
-                    ${data.DATA[i].telno}
-                    </div>
-                    <div class="list-info" id="list-addr${[i]}">
-                      ${data.DATA[i].addr}
-                    </div>
-                  </div>
-                </div>
-                <div class="icon">
-                  아이콘
-                </div>
-              </div>
-              <div class="divider"></div>
-            </div>
-            `
-
-          document.querySelector(".list-container")
-            .insertAdjacentHTML("beforeend", listCard);
-
-          //리스트 목록을 클릭 했을 때 clickedKinderName과 clickedkinderCode를 저장하고 디테일페이지로 이동
-          document.getElementById(`list${[i]}`)
-            .addEventListener("click", function () {
-              clickedKinderName = document.getElementById(`list-name${[i]}`).textContent;
-              localStorage.setItem('clickedKinderName', clickedKinderName);
-
-              clickedkinderCode = data.DATA[i].kindercode;
-              localStorage.setItem('clickedkinderCode', clickedkinderCode);
-
-              location.href = 'detail.html';
-            });
-        }
-      }
+      currentList = data.DATA.filter((item) => item.addr.includes(clickedGuName));
+      renderPage(currentList, currentPage);
+      setupPagination(currentList);
     });
-};
+}
 
-
-//검색창에서 검색 했을 때 그 키워드를 포함하는 유치원명을 모두 전역변수 배열로 저장
-let searchedArray = [];
-
-//서치 인풋 내용 입력후 버튼 클릭 시 작동되는 기능
 function directSearchList(searchedKeyword) {
   fetch("./json/kinderGeneral.json")
     .then((response) => response.json())
     .then((data) => {
-      //searchedArray가 push되면서 배열이 계속 쌓이는 현상을 초기화 해줌
-      searchedArray = [];
-
-      //인풋에 입력한 searchedKeyword 포함한 모든 유치원명을 searchedArray라는 배열로 넣어줌
-      for (let i = 0; i < data.DATA.length; i++) {
-        if (data.DATA[i].kindername.includes(searchedKeyword)) {
-          searchedArray.push(data.DATA[i].kindername);
-        }
+      currentList = data.DATA.filter((item) => item.kindername.includes(searchedKeyword));
+      if (currentList.length > 0) {
+        renderPage(currentList, currentPage);
+        setupPagination(currentList);
+      } else {
+        renderNoResults();
       }
-
-      //searchedArray에 있는 유치원명들을 kindername으로 가지고 있는 데이터들을 배열로 가져옴
-      let directKinderInfos = data.DATA.filter((item) =>
-        searchedArray.includes(item.kindername.trim())
-      );
-
-      for (let i = 0; i < directKinderInfos.length; i++) {
-        if (directKinderInfos) {
-
-          let listCard = `
-            <div class="list-card" id="list${[i]}">
-              <div class="list-contentsGrp">
-                <div class="list-contents">
-                  <div class="kinder-title">
-                    <div class="kinder-tag" id="list-establish${[i]}">
-                      ${directKinderInfos[i].establish}
-                    </div>
-                    <div class="kinder-name" id="list-name${[i]}">
-                      ${directKinderInfos[i].kindername}
-                    </div>
-                  </div>
-                  <div class="list-infoGrp">
-                    <div class="list-info" id="list-num${[i]}">
-                    ${directKinderInfos[i].telno}
-                    </div>
-                    <div class="list-info" id="list-addr${[i]}">
-    q                  ${directKinderInfos[i].addr}
-                    </div>
-                  </div>
-                </div>
-                <div class="icon">
-                  아이콘
-                </div>
-              </div>
-              <div class="divider"></div>
-            </div>
-            `
-
-          document.querySelector(".list-container")
-            .insertAdjacentHTML("beforeend", listCard);
-
-          //리스트 목록을 클릭 했을 때 clickedKinderName과 clickedkinderCode를 저장하고 디테일페이지로 이동
-          document.getElementById(`list${[i]}`)
-            .addEventListener("click", function () {
-              clickedKinderName = document.getElementById(`list-name${[i]}`).textContent;
-              localStorage.setItem('clickedKinderName', clickedKinderName);
-
-              clickedkinderCode = directKinderInfos[i].kindercode;
-              localStorage.setItem('clickedkinderCode', clickedkinderCode);
-
-              location.href = 'detail.html';
-            });
-        }
-      }
-      // 일치하는 검색결과가 없을 때
-      if (searchedArray.length == 0) {
-
-        let listEmpty = `
-          <div class="empty-contents">
-            <div class="empty-msg">
-                <div class="empty-img">이미지</div>
-                <div class="empty-text">일치하는 유치원명이 없습니다.</div>
-            </div>
-            <a class="empty-back-btn" href="index.html">돌아가기</a>
-          </div>
-        `
-
-        document.querySelector(".list-container")
-            .insertAdjacentHTML("beforeend", listEmpty);
-      }
-    })
+    });
 }
+
+function renderPage(list, page) {
+  const listContainer = document.querySelector(".list-container");
+  listContainer.innerHTML = "";
+  const start = (page - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+  const paginatedItems = list.slice(start, end);
+
+  paginatedItems.forEach((item, i) => {
+    let listCard = `
+      <div class="list-card" id="list${i + start}">
+        <div class="list-contentsGrp">
+          <div class="list-contents">
+            <div class="kinder-title">
+              <div class="kinder-tag" id="list-establish${i + start}">
+                ${item.establish}
+              </div>
+              <div class="kinder-name" id="list-name${i + start}">
+                ${item.kindername}
+              </div>
+            </div>
+            <div class="list-infoGrp">
+              <div class="list-info" id="list-num${i + start}">
+                ${item.telno}
+              </div>
+              <div class="list-info" id="list-addr${i + start}">
+                ${item.addr}
+              </div>
+            </div>
+          </div>
+          <div class="icon">아이콘</div>
+        </div>
+        <div class="divider"></div>
+      </div>
+    `;
+
+    listContainer.insertAdjacentHTML("beforeend", listCard);
+    document.getElementById(`list${i + start}`).addEventListener("click", function () {
+      clickedKinderName = document.getElementById(`list-name${i + start}`).textContent;
+      localStorage.setItem("clickedKinderName", clickedKinderName);
+      clickedkinderCode = item.kindercode;
+      localStorage.setItem("clickedkinderCode", clickedkinderCode);
+      location.href = "detail.html";
+    });
+  });
+}
+
+function renderNoResults() {
+  const listContainer = document.querySelector(".list-container");
+  listContainer.innerHTML = `
+    <div class="empty-contents">
+      <div class="empty-msg">
+        <div class="empty-img">이미지</div>
+        <div class="empty-text">일치하는 유치원명이 없습니다.</div>
+      </div>
+      <a class="empty-back-btn" href="index.html">돌아가기</a>
+    </div>
+  `;
+}
+
+function setupPagination(list) {
+  const paginationContainer = document.querySelector(".pagination");
+  paginationContainer.innerHTML = "";
+  const pageCount = Math.ceil(list.length / itemsPerPage);
+
+  // 처음 버튼
+  let firstPageButton = document.createElement("button");
+  firstPageButton.textContent = "처음";
+  firstPageButton.disabled = currentPage === 1;
+  firstPageButton.addEventListener("click", () => {
+    currentPage = 1;
+    startPage = 1;
+    endPage = maxPageButtons;
+    renderPage(currentList, currentPage);
+    setupPagination(currentList);
+  });
+  paginationContainer.appendChild(firstPageButton);
+
+  // 이전 페이지 세트 버튼
+  let prevSetButton = document.createElement("button");
+  prevSetButton.textContent = "이전";
+  prevSetButton.disabled = startPage === 1;
+  prevSetButton.addEventListener("click", () => {
+    startPage = Math.max(1, startPage - maxPageButtons);
+    endPage = startPage + maxPageButtons - 1;
+    renderPage(currentList, currentPage);
+    setupPagination(currentList);
+  });
+  paginationContainer.appendChild(prevSetButton);
+
+  // 페이지 번호 버튼 생성
+  for (let i = startPage; i <= Math.min(endPage, pageCount); i++) {
+    let pageButton = document.createElement("button");
+    pageButton.textContent = i;
+    if (i === currentPage) pageButton.classList.add("active");
+    pageButton.addEventListener("click", () => changePage(i));
+    paginationContainer.appendChild(pageButton);
+  }
+
+  // 다음 페이지 세트 버튼
+  let nextSetButton = document.createElement("button");
+  nextSetButton.textContent = "다음";
+  nextSetButton.disabled = endPage >= pageCount;
+  nextSetButton.addEventListener("click", () => {
+    startPage = Math.min(pageCount - maxPageButtons + 1, startPage + maxPageButtons);
+    endPage = startPage + maxPageButtons - 1;
+    renderPage(currentList, currentPage);
+    setupPagination(currentList);
+  });
+  paginationContainer.appendChild(nextSetButton);
+
+  // 끝 버튼
+  let lastPageButton = document.createElement("button");
+  lastPageButton.textContent = "끝";
+  lastPageButton.disabled = currentPage === pageCount;
+  lastPageButton.addEventListener("click", () => {
+    currentPage = pageCount;
+    startPage = Math.max(1, pageCount - maxPageButtons + 1);
+    endPage = pageCount;
+    renderPage(currentList, currentPage);
+    setupPagination(currentList);
+  });
+  paginationContainer.appendChild(lastPageButton);
+}
+
+function changePage(page) {
+  currentPage = page;
+  renderPage(currentList, currentPage);
+  setupPagination(currentList);
+}
+
