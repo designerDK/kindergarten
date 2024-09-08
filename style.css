@@ -12,8 +12,8 @@
     --color-7-grass: rgb(115, 128, 0);
     --color-8-pink: rgb(235, 59, 156);
 }
-
 /* 공통 */
+
 * {
     font-family: pretendard;
     box-sizing: border-box;
@@ -84,7 +84,22 @@ footer{
 }
 .states-btn{
     border: 2px solid blue;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+.states-icon-S{
+    border: 2px solid green;
+    width: 50px;
+}
+.states-icon-L{
+    border: 2px solid green;
+    width: 200px;
+}
+.states-text{
+    border: 2px solid green;
 }
 
 /* 리스트 */

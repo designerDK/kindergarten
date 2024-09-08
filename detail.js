@@ -25,6 +25,8 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                 item.kindercode === clickedkinderCode
             )
 
+            let kinderImg = kinderInfoPick[0].addr.match(/(\S+구)/); //주소 중 '구'로 끝나는 단어 찾기
+
             const detailTitle = `
             <h1>${clickedKinderName} 정보</h1>
         `
@@ -59,7 +61,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                     </div>
                 </div>
             </div>
-            <div class="detail-icon">아이콘</div>
+            <img class="states-icon-L" src="/data/statesIcon/${kinderImg[0]}.svg" alt="">
         </div>
         <div class="detail-subInfo">
             <div class="key-value">

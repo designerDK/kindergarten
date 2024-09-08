@@ -142,6 +142,8 @@ function setupPagination(list) {
     if (i === currentPage) pageButton.classList.add("active");
     pageButton.addEventListener("click", () => changePage(i));
     paginationContainer.appendChild(pageButton);
+
+    console.log(pageCount)
   }
 
   // 다음 페이지 세트 버튼

@@ -26,11 +26,14 @@ localStorage.setItem('searchedKeyword', searchedKeyword);
 // 구 버튼을 생성하고 눌렀을 때 서치리스트 기능을 실행
 guName.forEach((item) => {
   const guBTN = `
-        <button id="gu-btn" onClick="
-            clickedGuName = this.textContent;
+        <button class="states-btn" id="gu-btn" onClick="
+            clickedGuName = this.querySelector('.states-text').textContent;
             localStorage.setItem('clickedGuName', clickedGuName);
             location.href = 'list.html';
-        ">${item}</button>
+        ">
+            <img class="states-icon-S" src="/data/statesIcon/${item}.svg" alt="">
+            <div class="states-text">${item}</div>
+        </button>
     `;
     document.querySelector(".states-btn-container")
     .insertAdjacentHTML("beforeend", guBTN);
