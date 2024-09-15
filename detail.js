@@ -59,6 +59,14 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                             ${kinderInfoPick[0].opertime}
                         </div>
                     </div>
+                    <div class="key-value">
+                        <div class="key">
+                            주소
+                        </div>
+                        <div class="value">
+                            ${kinderInfoPick[0].addr}
+                        </div>
+                    </div>
                 </div>
             </div>
             <img class="states-icon-L" src="/data/statesIcon/${kinderImg[0]}.svg" alt="">
@@ -217,7 +225,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'bottom',
+                            position: 'left',
                             labels: {
                                 font: {
                                     size: 14 // 범례텍스트 사이즈
