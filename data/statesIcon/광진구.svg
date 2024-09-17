@@ -1,3 +1,7 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="12" cy="12" r="12" fill="#00B569"/>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="2" y="3" width="44" height="34" rx="7" fill="#FFA53B"/>
+<path d="M24.9871 43.5135C24.5484 44.1622 23.4516 44.1622 23.0129 43.5135L12.1544 27.4595C11.7157 26.8108 12.2641 26 13.1415 26L34.8585 26C35.7359 26 36.2843 26.8108 35.8456 27.4595L24.9871 43.5135Z" fill="#FFA53B"/>
+<circle cx="19" cy="16" r="2" fill="black"/>
+<circle cx="29" cy="16" r="2" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18.0017 22.856C18.0006 22.9038 18 22.9519 18 23C18 26.3137 20.6863 29 24 29C27.3137 29 30 26.3137 30 23C30 22.9519 29.9994 22.9038 29.9983 22.856H18.0017Z" fill="#FFE767"/>
 </svg>
