@@ -34,17 +34,17 @@
     letter-spacing: -0.01em;
     font-weight: 600;
 }
-.text-body-large-sb{
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-    font-weight: 600;
-}
 .text-body-large-m{
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.01em;
     font-weight: 500;
+}
+.text-body-large-r{
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
 }
 .text-body-midlarge-m{
     font-size: 18px;
@@ -91,79 +91,75 @@ body{
 }
 
 /* --------라지 레이아웃 : 데스크탑-------- */
-.home-btn{
-    display: flex;
-    height: 50px;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--surface-primary);
-}
-.home-btn img{
-    width: 140px;
-    height: 36px;
-}
 h1{
     margin: 0px;
     text-align: center;
     padding: var(--large-padding);
     padding-top: 100px;
 }
-
-/* 푸터 */
-footer{
-    height: 46px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--surface-gray);
+main{
     padding: var(--large-padding);
-}
-footer img{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.footer-info{
-    color: var(--texticon-darkgray);
 }
 
 /* 서치 */
 .search-section{
-    border: 2px solid green;
     display: flex;
     justify-content: center;
+    padding-top: 30px;
+    gap: 10px;
+}
+.input {
+    width: 320px;
+    height: 52px;
+    background-color: var(--surface-white);
+    border: none;
+    padding: 14px 20px 14px 20px;
+    border-radius: 1000px;
+
+    &::placeholder {
+        color: var(--texticon-lightgray);
+    }
+    &:focus{
+        outline: 1.5px solid var(--border-focus);
+    }
 }
 .search-btn{
-    border: 2px solid green;
+    border: none;
+    padding: 14px 40px 14px 40px;
+    border-radius: 1000px;
+    background-color: var(--surface-primary);
+    color: var(--texticon-white);
+    cursor: pointer;
 }
 
 /* 구별 버튼 */
 .states-btn-container{
-    border: 2px solid green;
     display: grid;
-    grid-template-columns: repeat(5, 100px);
+    grid-template-columns: repeat(5, 110px);
     justify-content: center;
-    row-gap: 60px;
-    column-gap: 36px;
+    row-gap: 20px;
+    column-gap: 14px;
+    padding-top: 60px;
+    padding-bottom: 100px;
 }
 .states-btn{
-    border: 2px solid blue;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 10px;
+    padding: 16px;
+    background-color: var(--surface-white);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
 }
 .states-icon-S{
-    border: 2px solid green;
-    width: 50px;
+    width: 48px;
 }
 .states-icon-L{
     border: 2px solid green;
     width: 200px;
-}
-.states-text{
-    border: 2px solid green;
 }
 
 /* 리스트 */

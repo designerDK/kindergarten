@@ -11,11 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (searchedKeyword) {
     directSearchList(searchedKeyword);
-    let listTitle = `<h1>검색된 유치원 정보</h1>`;
+    let listTitle = `검색된 유치원 목록입니다.`;
     document.querySelector(".list-title").insertAdjacentHTML("beforeend", listTitle);
   } else if (clickedGuName) {
     searchList(clickedGuName);
-    let listTitle = `<h1>${clickedGuName} 유치원 정보</h1>`;
+    let listTitle = `
+    <span class="highlight">${clickedGuName}</span>에 위치한 유치원입니다.
+    `;
     document.querySelector(".list-title").insertAdjacentHTML("beforeend", listTitle);
   } else {
     console.log("No guName or searchedKeyword!");
@@ -142,8 +144,6 @@ function setupPagination(list) {
     if (i === currentPage) pageButton.classList.add("active");
     pageButton.addEventListener("click", () => changePage(i));
     paginationContainer.appendChild(pageButton);
-
-    console.log(pageCount)
   }
 
   // 다음 페이지 세트 버튼

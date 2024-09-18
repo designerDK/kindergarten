@@ -28,8 +28,8 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
             let kinderImg = kinderInfoPick[0].addr.match(/(\S+구)/); //주소 중 '구'로 끝나는 단어 찾기
 
             const detailTitle = `
-            <h1>${clickedKinderName} 정보</h1>
-        `
+            <span class="highlight">${clickedKinderName}</span> 정보입니다.
+            `
 
             const detailBasic = `
         <div class="detail-basicGrp">

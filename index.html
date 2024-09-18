@@ -8,31 +8,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <a class="home-btn" href="index.html">
-            <img src="/data/kinderseoul_logo.svg" alt="">
-        </a>
-        <h1 class="text-title-l">
+    <header-component>
+        <h1 slot="title-slot" class="text-title-l">
             <span class="highlight">킨더서울</span>에서 ‘서울시 유치원 정보’를 찾아보세요!
         </h1>
-    </header>
+    </header-component>
 
     <main>
         <div class="search-section">
-            <input class="input" type="text">
-            <button class="search-btn">검색</button>
+            <input class="input text-body-large-r" type="text" placeholder="유치원 이름을 입력해보세요.">
+            <button class="search-btn text-body-large-m">검색</button>
         </div>
         <div class="contents-section">
             <div class="states-btn-container"></div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-info text-body-small-m">ⓒ 2024. Designer DK All rights reserved.</div>
-        <img src="/data/dk_logo.svg" alt="">
-        <div class="footer-info">Contact : tupacalypse@naver.com</div>
-    </footer>
+    <footer-component></footer-component>
+    <!-- <custom-template templateID = "footer-component">
+    </custom-template> -->
+    
 
+<!-- 자바스크립트 -->
+    <script src="components/header-component.js"></script>
+    <script src="components/footer-component.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

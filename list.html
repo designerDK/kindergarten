@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <a class="home-btn" href="index.html">아이콘</a>
-        <div class="list-title"></div>
-    </header>
+    <header-component>
+        <h1 slot="title-slot" class="list-title text-title-l"></h1>
+    </header-component>
 
     <main>
         <div class="contents-section">
@@ -20,14 +19,10 @@
         </div>
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-info">Copyright</div>
-            <div class="footer-info">api출처</div>
-        </div>
-        <div class="footer-info">메일</div>
-    </footer>
+    <footer-component></footer-component>
     
+    <script src="/components/header-component.js"></script>
+    <script src="/components/footer-component.js"></script>
     <script src="list.js"></script>
 </body>
 </html>
