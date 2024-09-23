@@ -61,29 +61,32 @@ function renderPage(list, page) {
         <div class="list-contentsGrp">
           <div class="list-contents">
             <div class="kinder-title">
-              <div class="kinder-tag" id="list-establish${i + start}">
+              <div class="kinder-tag text-body-small-sb" id="list-establish${i + start}">
                 ${item.establish}
               </div>
-              <div class="kinder-name" id="list-name${i + start}">
+              <div class="kinder-name text-body-large-sb" id="list-name${i + start}">
                 ${item.kindername}
               </div>
             </div>
             <div class="list-infoGrp">
-              <div class="list-info" id="list-num${i + start}">
+              <div class="list-info text-body-small-m" id="list-num${i + start}">
                 ${item.telno}
               </div>
-              <div class="list-info" id="list-addr${i + start}">
+              <div class="list-divider text-body-small-m">|</div>
+              <div class="list-info text-body-small-m" id="list-addr${i + start}">
                 ${item.addr}
               </div>
             </div>
           </div>
-          <div class="icon">아이콘</div>
+          <img class="icon" src="/data/icon/chevron-right.svg" alt="">
         </div>
-        <div class="divider"></div>
       </div>
     `;
+    
 
     listContainer.insertAdjacentHTML("beforeend", listCard);
+
+    //클릭 이벤트 설정
     document.getElementById(`list${i + start}`).addEventListener("click", function () {
       clickedKinderName = document.getElementById(`list-name${i + start}`).textContent;
       localStorage.setItem("clickedKinderName", clickedKinderName);
@@ -91,6 +94,18 @@ function renderPage(list, page) {
       localStorage.setItem("clickedkinderCode", clickedkinderCode);
       location.href = "detail.html";
     });
+
+    // 각 kinder-tag의 배경색 설정
+    let kinderTag = document.getElementById(`list-establish${i + start}`);
+    if (item.establish === '공립(병설)') {
+      kinderTag.style.backgroundColor = 'var(--surface-env2)';
+    } else if (item.establish === '사립(사인)') {
+      kinderTag.style.backgroundColor = 'var(--surface-env3)';
+    } else if (item.establish === '공립(단설)') {
+      kinderTag.style.backgroundColor = 'var(--surface-env4)';
+    } else if (item.establish === '사립(법인)') {
+      kinderTag.style.backgroundColor = 'var(--surface-env1)';
+    }
   });
 }
 
@@ -114,8 +129,8 @@ function setupPagination(list) {
 
   // 처음 버튼
   let firstPageButton = document.createElement("button");
-  firstPageButton.textContent = "처음";
-  firstPageButton.disabled = currentPage === 1;
+  firstPageButton.innerHTML = '<img src="/data/icon/start.svg" alt="">'
+  firstPageButton.classList.add("page-btn");
   firstPageButton.addEventListener("click", () => {
     currentPage = 1;
     startPage = 1;
@@ -127,8 +142,8 @@ function setupPagination(list) {
 
   // 이전 페이지 세트 버튼
   let prevSetButton = document.createElement("button");
-  prevSetButton.textContent = "이전";
-  prevSetButton.disabled = startPage === 1;
+  prevSetButton.innerHTML = '<img src="/data/icon/prev.svg" alt="">'
+  prevSetButton.classList.add("page-btn");
   prevSetButton.addEventListener("click", () => {
     startPage = Math.max(1, startPage - maxPageButtons);
     endPage = startPage + maxPageButtons - 1;
@@ -141,6 +156,8 @@ function setupPagination(list) {
   for (let i = startPage; i <= Math.min(endPage, pageCount); i++) {
     let pageButton = document.createElement("button");
     pageButton.textContent = i;
+    pageButton.classList.add("text-body-mid-m");
+    pageButton.classList.add("page-num");
     if (i === currentPage) pageButton.classList.add("active");
     pageButton.addEventListener("click", () => changePage(i));
     paginationContainer.appendChild(pageButton);
@@ -148,8 +165,8 @@ function setupPagination(list) {
 
   // 다음 페이지 세트 버튼
   let nextSetButton = document.createElement("button");
-  nextSetButton.textContent = "다음";
-  nextSetButton.disabled = endPage >= pageCount;
+  nextSetButton.innerHTML = '<img src="/data/icon/next.svg" alt="">'
+  nextSetButton.classList.add("page-btn");
   nextSetButton.addEventListener("click", () => {
     startPage = Math.min(pageCount - maxPageButtons + 1, startPage + maxPageButtons);
     endPage = startPage + maxPageButtons - 1;
@@ -160,8 +177,8 @@ function setupPagination(list) {
 
   // 끝 버튼
   let lastPageButton = document.createElement("button");
-  lastPageButton.textContent = "끝";
-  lastPageButton.disabled = currentPage === pageCount;
+  lastPageButton.innerHTML = '<img src="/data/icon/end.svg" alt="">'
+  lastPageButton.classList.add("page-btn");
   lastPageButton.addEventListener("click", () => {
     currentPage = pageCount;
     startPage = Math.max(1, pageCount - maxPageButtons + 1);
