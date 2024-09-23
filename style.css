@@ -112,9 +112,14 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; -o-font-smoothing: antialiased;
 }
+html, body{
+    height: 100%;
+    margin: 0;
+}
 body{
-    margin: 0px;
     background-color: var(--surface-bg);
+    display: flex;
+    flex-direction: column;
 }
 
 /* --------라지 레이아웃 : 데스크탑-------- */
@@ -126,6 +131,7 @@ h1{
 }
 main{
     padding: var(--large-padding);
+    flex: 1;
 }
 
 /* 서치 */
@@ -379,25 +385,34 @@ main{
 
 /* 검색결과 없을 때 */
 .empty-contents{
-    border: 2px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 40px;
+    width: 606px;
+    height: 360px;
+    background-color: var(--surface-white);
+    border-radius: 14px;
+    padding: 30px;
+    justify-content: center;
 }
 .empty-msg{
-    border: 2px solid green;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 20px;
+    align-items: center;
 }
-.empty-img{
-    border: 2px solid blue;
+.empty-msg img{
+    width: 100px;
 }
 .empty-text{
-    border: 2px solid orange;
+    color: var(--texticon-darkgray);
 }
 .empty-back-btn{
-    border: 2px solid red;
+    padding: 8px 20px 8px 20px;
+    background-color: var(--surface-primary);
+    color: var(--texticon-white);
+    border-radius: 1000px;
+    text-decoration: none;
 }
 

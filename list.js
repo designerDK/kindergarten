@@ -114,10 +114,10 @@ function renderNoResults() {
   listContainer.innerHTML = `
     <div class="empty-contents">
       <div class="empty-msg">
-        <div class="empty-img">이미지</div>
-        <div class="empty-text">일치하는 유치원명이 없습니다.</div>
+        <img src="/data/icon/empty.svg" alt="">
+        <div class="empty-text text-body-midlarge-m">일치하는 유치원명이 없습니다.</div>
       </div>
-      <a class="empty-back-btn" href="index.html">돌아가기</a>
+      <a class="empty-back-btn text-body-midlarge-m" href="index.html">돌아가기</a>
     </div>
   `;
 }
