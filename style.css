@@ -274,6 +274,11 @@ main{
     display: flex;
     gap: 14px;
 }
+.key-value3{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 .key{
     color: var(--texticon-midgray);
     width: 80px;
@@ -311,7 +316,7 @@ main{
 .detail-subInfo{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 8px;
+    row-gap: 12px;
     column-gap: 16px;
 }
 /* 데이터 */

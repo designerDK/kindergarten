@@ -120,7 +120,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                     ${kinderInfoPick[0].subofficeedu}
                 </div>
             </div>
-            <div class="key-value2">
+            <div class="key-value3">
                 <div class="key">
                     홈페이지
                 </div>
