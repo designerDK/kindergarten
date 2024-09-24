@@ -122,7 +122,7 @@ body{
     flex-direction: column;
 }
 
-/* --------라지 레이아웃 : 데스크탑-------- */
+/* ----------------라지 레이아웃 : 데스크탑---------------- */
 h1{
     margin: 0px;
     text-align: center;
@@ -416,3 +416,67 @@ main{
     text-decoration: none;
 }
 
+
+/* ----------------미디엄 레이아웃 : 태블릿---------------- */
+
+@media (max-width: 1024px) {
+    h1{
+        padding: var(--mid-padding);
+        padding-top: 74px;
+    }
+    main{
+        padding: var(--mid-padding);
+    }
+    .contents-section{
+        padding-top: 50px;
+    }
+    /* 구별 버튼 */
+    .states-btn-container{
+        grid-template-columns: repeat(4, 110px);
+    }
+    
+    /* 리스트 */
+    .list-card{
+        width: 482px;
+    }
+    
+    /* 키벨류 */
+    .key-value1{
+        gap: 8px;
+    }
+    .key-value2{
+        gap: 8px;
+    }
+    .key-value3{
+        flex-direction: row;
+        gap: 14px;
+    }
+    /* 디테일 */
+    .detail-container{
+        width: 482px;
+    }
+    .states-icon-L{
+        width: 90px;
+    }
+    .detail-subInfo{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    /* 데이터 */
+    .data-container1{
+        width: 482px;
+    }
+    .legend{
+        width: 136px;
+    }
+    .data-container2 {
+        width: 482px;
+    }
+    #kidnum-chart{
+        width: 280px !important;
+    }
+    
+    /* 검색결과 없을 때 */
+    .empty-contents{
+        width: 482px;
+    }
+}

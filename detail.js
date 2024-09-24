@@ -265,7 +265,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                         </div>
                     </div>
                 </div> 
-                <canvas id="kidnum-chart" width="100%" ></canvas>
+                <canvas id="kidnum-chart" width="100%"></canvas>
             </div>
         `
             document.querySelector(".detail-title")

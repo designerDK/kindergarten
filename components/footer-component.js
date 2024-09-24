@@ -25,6 +25,19 @@ class FooterComponent extends HTMLElement {
             .footer-info {
                 color: var(--texticon-darkgray);
             }
+            
+            @media (max-width: 1024px) {
+                footer {
+                    justify-content: center;
+                    padding: var(--mid-padding);
+                }
+                footer img {
+                    display: none;
+                }
+                footer :nth-child(1){
+                    display: none;
+                }
+            }
             </style>
             <footer>
                 <div class="footer-info text-body-small-m">ⓒ 2024. Designer DK All rights reserved.</div>
