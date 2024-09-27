@@ -18,7 +18,13 @@ class HeaderComponent extends HTMLElement {
                     width: 140px;
                     height: 36px;
                 }
+            @media (max-width: 528px) {
+                .home-btn {
+                       padding-top: 50px;
+                    }
+                }
             </style>
+    
             <a class="home-btn" href="index.html">
                 <img src="/data/kinderseoul_logo.svg" alt="">
             </a>

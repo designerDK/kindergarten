@@ -1,11 +1,28 @@
-let currentPage = 1; // 현재 페이지 번호
-const itemsPerPage = 10; // 페이지당 표시할 항목 수
-let currentList = []; // 현재 목록을 저장할 배열
-const maxPageButtons = 10; // 페이지네이션에서 보일 최대 페이지 번호 버튼 수
-let startPage = 1; // 페이지 번호 버튼의 시작 페이지
-let endPage = maxPageButtons; // 페이지 번호 버튼의 끝 페이지
+let currentPage = 1;
+const itemsPerPage = 10;
+let currentList = [];
+let maxPageButtons = 10; // 페이지네이션에서 보일 최대 페이지 번호 버튼 수
+let startPage = 1;
+let endPage = maxPageButtons;
 
+// 화면 크기에 따라 페이지네이션 최대값을 설정하는 함수
+function updateMaxPageButtons() {
+  if (window.innerWidth <= 1024) {
+    maxPageButtons = 5; // 가로 500px 이하일 때 페이지 버튼 최대값 5로 설정
+  } else {
+    maxPageButtons = 10; // 그 외의 경우 10으로 설정
+  }
+  // 페이지네이션 재구성
+  startPage = Math.max(1, Math.min(startPage, Math.ceil(currentList.length / itemsPerPage) - maxPageButtons + 1));
+  endPage = startPage + maxPageButtons - 1;
+  setupPagination(currentList);
+}
+
+// 페이지 로드 시 한 번 실행
 document.addEventListener("DOMContentLoaded", function () {
+  updateMaxPageButtons(); // 화면 크기에 맞게 페이지네이션 버튼 설정
+  window.addEventListener("resize", updateMaxPageButtons); // 창 크기 변경 시 이벤트 추가
+
   let clickedGuName = localStorage.getItem("clickedGuName");
   let searchedKeyword = localStorage.getItem("searchedKeyword");
 
@@ -23,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("No guName or searchedKeyword!");
   }
 });
+
 
 function searchList(clickedGuName) {
   fetch("./json/kinderGeneral.json")
@@ -110,6 +128,8 @@ function renderPage(list, page) {
 }
 
 function renderNoResults() {
+  const paginationContainer = document.querySelector(".pagination");
+  paginationContainer.innerHTML = "";
   const listContainer = document.querySelector(".list-container");
   listContainer.innerHTML = `
     <div class="empty-contents">
@@ -141,12 +161,18 @@ function setupPagination(list) {
   paginationContainer.appendChild(firstPageButton);
 
   // 이전 페이지 세트 버튼
+  // 이전 페이지 세트 버튼
+
+
   let prevSetButton = document.createElement("button");
   prevSetButton.innerHTML = '<img src="/data/icon/prev.svg" alt="">'
   prevSetButton.classList.add("page-btn");
   prevSetButton.addEventListener("click", () => {
     startPage = Math.max(1, startPage - maxPageButtons);
     endPage = startPage + maxPageButtons - 1;
+    if (currentPage > endPage) {
+      currentPage = endPage; // currentPage가 endPage 범위 내로 변경
+    }
     renderPage(currentList, currentPage);
     setupPagination(currentList);
   });
@@ -168,8 +194,14 @@ function setupPagination(list) {
   nextSetButton.innerHTML = '<img src="/data/icon/next.svg" alt="">'
   nextSetButton.classList.add("page-btn");
   nextSetButton.addEventListener("click", () => {
+    const pageCount = Math.ceil(currentList.length / itemsPerPage);
     startPage = Math.min(pageCount - maxPageButtons + 1, startPage + maxPageButtons);
+    if (startPage < 1) startPage = 1; // startPage가 1보다 작지 않도록
     endPage = startPage + maxPageButtons - 1;
+    if (endPage > pageCount) endPage = pageCount; // endPage가 전체 페이지 수를 초과하지 않도록
+    if (currentPage < startPage) {
+      currentPage = startPage; // currentPage가 startPage 범위 내로 변경
+    }
     renderPage(currentList, currentPage);
     setupPagination(currentList);
   });

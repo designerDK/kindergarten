@@ -210,7 +210,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
             <div class="data-grp2">
                 <div class="data-legends2">
                     <div class="legend">
-                        <div class="legend-tag chart1"></div>
+                 
                         <div class="legend-text">
                             <div class="key text-body-small-m">
                             만 3세 반
@@ -221,7 +221,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                         </div>
                     </div>
                     <div class="legend">
-                        <div class="legend-tag chart2"></div>
+             
                         <div class="legend-text">
                             <div class="key text-body-small-m">
                             만 4세 반
@@ -232,7 +232,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                         </div>
                     </div>
                     <div class="legend">
-                        <div class="legend-tag chart3"></div>
+                   
                         <div class="legend-text">
                             <div class="key text-body-small-m">
                             만 5세 반
@@ -243,7 +243,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                         </div>
                     </div>
                     <div class="legend">
-                        <div class="legend-tag chart4"></div>
+                     
                         <div class="legend-text">
                             <div class="key text-body-small-m">
                             혼합반
@@ -254,7 +254,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                         </div>
                     </div>
                     <div class="legend">
-                        <div class="legend-tag chart5"></div>
+                      
                         <div class="legend-text">
                             <div class="key text-body-small-m">
                             특수학급
@@ -265,7 +265,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                         </div>
                     </div>
                 </div> 
-                <canvas id="kidnum-chart" width="100%"></canvas>
+                <canvas id="kidnum-chart"></canvas>
             </div>
         `
             document.querySelector(".detail-title")
@@ -279,6 +279,17 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
             document.querySelector(".data-container2")
                 .insertAdjacentHTML("beforeend", kidNumData);
 
+            let kinderTag = document.querySelector('.kinder-tag');
+            if (kinderInfoPick[0].establish === '공립(병설)') {
+                kinderTag.style.backgroundColor = 'var(--surface-env2)';
+            } else if (kinderInfoPick[0].establish === '사립(사인)') {
+                kinderTag.style.backgroundColor = 'var(--surface-env3)';
+            } else if (kinderInfoPick[0].establish === '공립(단설)') {
+                kinderTag.style.backgroundColor = 'var(--surface-env4)';
+            } else if (kinderInfoPick[0].establish === '사립(법인)') {
+                kinderTag.style.backgroundColor = 'var(--surface-env1)';
+            }
+            kinderInfoPick[0].establish
 
 
             // 학급수차트
@@ -320,7 +331,7 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                     }
                 }
             });
-            
+
             //유아수차트
             new Chart(document.getElementById('kidnum-chart'), {
                 type: 'bar',
