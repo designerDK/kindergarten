@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let listTitle = `검색된 유치원 목록입니다.`;
     document.querySelector(".list-title").insertAdjacentHTML("beforeend", listTitle);
   } else if (clickedGuName) {
-    localStorage.removeItem("searchedKeyword"); // searchedKeyword 초기화
     searchList(clickedGuName);
     let listTitle = `
     <span class="highlight">${clickedGuName}</span>에 위치한 유치원입니다.

@@ -16,11 +16,6 @@ window.addEventListener("pageshow", function () {
     localStorage.removeItem("searchedKeyword");
   }
 });
-// 홈 화면 로드 시 searchedKeyword 초기화
-document.addEventListener("DOMContentLoaded", function () {
-  localStorage.removeItem("searchedKeyword"); // 검색 키워드 초기화
-});
-
 //검색버튼을 키보드 엔터 눌렀을 때도 동작하게
 searchInput.addEventListener("keyup", function(event){
   if(event.keyCode === 13){
