@@ -315,7 +315,11 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                     plugins: {
                         legend: {
                             display: false
+                        },
+                        tooltip: { // 말풍선 정보(Tooltip) 비활성화
+                            enabled: false
                         }
+            
                     },
                     scales: {
                         x: {
@@ -375,7 +379,10 @@ function searchDetail(clickedkinderCode, clickedKinderName) {
                     plugins: {
                         legend: {
                             display: false // 범례 표시 여부 (false로 설정하여 범례 숨김)
-                        }
+                        },
+                        tooltip: { // 말풍선 정보(Tooltip) 비활성화
+                            enabled: false
+                        }            
 
                     },
 
