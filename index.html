@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,19 +11,29 @@
 
     <!-- 검색관련 -->
 
-    <meta name="description" 
-    content="서울시 유치원 정보를 쉽게 찾아볼 수 있는 서비스입니다. 유치원의 기본 정보와 학급수, 유아수 등 상세한 정보를 확인할 수 있습니다.">
+    <meta name="description" content="서울시 유치원 정보를 쉽게 찾아볼 수 있는 서비스입니다. 유치원의 기본 정보와 학급수, 유아수 등 상세한 정보를 확인할 수 있습니다.">
     <meta name="author" content="designerDK">
     <meta name="keywords" content="서울시 유치원, 킨더서울, 서울시, 유치원, 사립, 공립, 유아수, 학급수, kinder seoul, 유치원 정보">
-    <meta property="og:description" 
-    content="서울시 유치원 정보를 쉽게 찾아볼 수 있는 서비스입니다. 유치원의 기본 정보와 학급수, 유아수 등 상세한 정보를 확인할 수 있습니다.">
+    <meta property="og:description"
+        content="서울시 유치원 정보를 쉽게 찾아볼 수 있는 서비스입니다. 유치원의 기본 정보와 학급수, 유아수 등 상세한 정보를 확인할 수 있습니다.">
     <meta property="og:title" content="킨더서울 - 서울시 유치원 정보">
     <meta property="og:image" content="data/ogimage.png">
     <meta property="og:url" content="https://kinderseoul.netlify.app/">
 
     <meta name="google-site-verification" content="ohrGnA7RsHT30X375ixKOmz7HJIZHM3ZBCPU3Y2ootg" />
     <meta name="naver-site-verification" content="11a034297e727f36c86ec84c6bbaad913f07f1f4" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XG81RPYW0D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XG81RPYW0D');
+    </script>
 </head>
+
 <body>
     <header-component>
         <h1 slot="title-slot" class="text-title-l">
@@ -46,5 +57,5 @@
     <script src="components/footer-component.js"></script>
     <script src="index.js"></script>
 </body>
-</html>
 
+</html>
