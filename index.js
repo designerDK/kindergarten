@@ -13,6 +13,7 @@ const searchInput = document.querySelector(".input");
 window.addEventListener("pageshow", function () {
   if (searchInput) {
     searchInput.value = "";
+    localStorage.removeItem("searchedKeyword");
   }
 });
 // 홈 화면 로드 시 searchedKeyword 초기화
