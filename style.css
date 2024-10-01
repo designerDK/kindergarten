@@ -145,19 +145,24 @@ h1 {
     margin: 0px;
     text-align: center;
     padding: var(--large-padding);
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 main {
     padding: var(--large-padding);
     flex: 1;
 }
+.ad{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 /* 서치 */
 .search-section {
     display: flex;
     justify-content: center;
-    padding-top: 30px;
     gap: 10px;
 }
 
@@ -485,7 +490,7 @@ main {
 @media (max-width: 1024px) {
     h1 {
         padding: var(--mid-padding);
-        padding-top: 74px;
+        padding-top: 40px;
     }
 
     main {
