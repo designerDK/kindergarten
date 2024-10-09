@@ -29,5 +29,4 @@ class HeaderComponent extends HTMLElement {
         this.shadowRoot.appendChild(content);
     }
 }
-
 customElements.define('header-component', HeaderComponent);
